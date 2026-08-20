@@ -76,6 +76,13 @@ export default function LoginForm() {
               <p className="text-red-500 text-sm">{errors.password.message}</p>
             )}
           </div>
+          {/* Forgot Password link */}
+          <div className="text-right">
+            <Link to="/forgot-password" className="text-sm text-blue-500 hover:underline">
+              Forgot Password?
+            </Link>
+          </div>
+          {/* submission section */}
           {serverError && <p className="text-red-500 text-sm">{serverError}</p>}
           <Button
             className="cursor-pointer"

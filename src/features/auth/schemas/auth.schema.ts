@@ -24,5 +24,22 @@ export const registerSchema = z
     path: ['confirmPassword'], // This will set the error on the confirmPassword field ::page 37 QURAN
   });
 
+export const forgotPasswordSchema = z.object({
+  email: z.email({ message: 'Please enter a valid email address' }),
+});
+
+export const updatePasswordSchema = z
+  .object({
+    password: z.string().min(6, 'Password must be at least 6 characters'),
+
+    confirmPassword: z.string().min(6, 'Please confirm your password'),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword'],
+  });
+
 export type LoginFormValues = z.infer<typeof loginSchema>;
 export type RegisterFormValues = z.infer<typeof registerSchema>;
+export type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>;
+export type UpdatePasswordFormValues = z.infer<typeof updatePasswordSchema>;
