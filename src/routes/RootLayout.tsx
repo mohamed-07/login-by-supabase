@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import  Navbar from '@/features/layout/Navbar';
+import { Toaster } from '@/components/ui/toast';
 
 
 export default function RootLayout() {
@@ -9,6 +10,7 @@ export default function RootLayout() {
       <main className="flex-1">
         <Outlet />
       </main>
+      <Toaster />
     </div>
   );
 }

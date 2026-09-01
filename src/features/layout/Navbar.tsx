@@ -1,4 +1,4 @@
-import { Menu, LogOut } from 'lucide-react';
+import { Menu } from 'lucide-react';
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -95,13 +95,9 @@ export default function Navbar() {
             </div>
 
             {/* Logout */}
-            <Button
-              variant="ghost"
-              className="justify-start gap-2 text-red-500"
-            >
-              <LogOut className="h-4 w-4" />
+            <div className="flex items-center gap-2 border-t pt-5">
               <LogoutButton />
-            </Button>
+            </div>
           </div>
         </SheetContent>
       </Sheet>

@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { supabase } from '../../../lib/supabaseClient';
 import type { User, Session } from '@supabase/supabase-js';
+import { toast } from '@/components/ui/toast';  
 
 interface AuthState {
   user: User | null;
@@ -63,8 +64,18 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 
   signOut: async () => {
-    await supabase.auth.signOut();
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      toast.add({ type: 'error', description: 'Error signing out: ' + error.message });
+      return;
+    }
     set({ user: null, session: null });
+    toast.add({
+      type: 'success',
+      title: 'Success',
+      description: 'Logged out successfully',
+      timeout: 800000,
+    });
   },
 
   resetPassword: async (email) => {
