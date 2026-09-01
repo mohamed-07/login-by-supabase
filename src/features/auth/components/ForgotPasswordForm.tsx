@@ -3,7 +3,10 @@ import { useAuthStore } from '../store/authStore';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from 'react-router-dom';
-import { forgotPasswordSchema, type ForgotPasswordFormValues } from '../schemas/auth.schema';
+import {
+  forgotPasswordSchema,
+  type ForgotPasswordFormValues,
+} from '../schemas/auth.schema';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,23 +20,27 @@ import {
 } from '@/components/ui/card';
 
 export default function ForgotPasswordForm() {
-    const resetPassword = useAuthStore((state) => state.resetPassword);
-    const [serverError, setServerError] = useState<string | null>(null);
-    const [successMessage, setSuccessMessage] = useState<string | null>(null);
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ForgotPasswordFormValues>({
-        resolver: zodResolver(forgotPasswordSchema),
-    });
+  const resetPassword = useAuthStore((state) => state.resetPassword);
+  const [serverError, setServerError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<ForgotPasswordFormValues>({
+    resolver: zodResolver(forgotPasswordSchema),
+  });
 
-    const onSubmit = async (data: ForgotPasswordFormValues) => {
-        setServerError(null);
-        setSuccessMessage(null);
-        const { error } = await resetPassword(data.email);
-        if (error) {
-            setServerError(error);
-        } else {
-            setSuccessMessage('Password reset link sent to your email.');
-        }
+  const onSubmit = async (data: ForgotPasswordFormValues) => {
+    setServerError(null);
+    setSuccessMessage(null);
+    const { error } = await resetPassword(data.email);
+    if (error) {
+      setServerError(error);
+    } else {
+      setSuccessMessage('Password reset link sent to your email.');
     }
+  };
 
   return (
     <Card className="w-full max-w-sm mx-auto mt-20">
@@ -43,7 +50,7 @@ export default function ForgotPasswordForm() {
           Enter your email address and we'll send you a link to reset your
           password.
         </CardDescription>
-      </CardHeader> 
+      </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
@@ -64,7 +71,11 @@ export default function ForgotPasswordForm() {
           {successMessage && (
             <p className="text-sm text-green-500">{successMessage}</p>
           )}
-          <Button type="submit" disabled={isSubmitting} className="cursor-pointer">
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="cursor-pointer"
+          >
             {isSubmitting ? 'Sending...' : 'Send Reset Link'}
           </Button>
         </form>
@@ -77,4 +88,3 @@ export default function ForgotPasswordForm() {
     </Card>
   );
 }
-

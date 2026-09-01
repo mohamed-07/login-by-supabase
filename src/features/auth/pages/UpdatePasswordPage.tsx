@@ -1,9 +1,9 @@
-import UpdatePasswordForm from "../components/UpadatePasswordForm";
+import UpdatePasswordForm from '../components/UpadatePasswordForm';
 
 export default function UpdatePasswordPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <UpdatePasswordForm />
     </div>
-  )
+  );
 }

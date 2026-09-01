@@ -66,7 +66,7 @@ export default function LoginForm() {
           <div className="flex flex-col gap-2">
             <Label htmlFor="password">Password</Label>
             <Input
-              className="cursor-pointer"//Stop here last time
+              className="cursor-pointer" //Stop here last time
               id="password"
               type="password"
               placeholder="Password"
@@ -78,7 +78,10 @@ export default function LoginForm() {
           </div>
           {/* Forgot Password link */}
           <div className="text-right">
-            <Link to="/forgot-password" className="text-sm text-blue-500 hover:underline">
+            <Link
+              to="/forgot-password"
+              className="text-sm text-blue-500 hover:underline"
+            >
               Forgot Password?
             </Link>
           </div>

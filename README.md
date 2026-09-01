@@ -1,1 +1,1 @@
-# React + TypeScript + Vite + Shadcn + Zostand + Zod + Supabase  
+# React + TypeScript + Vite + Shadcn + Zostand + Zod + Supabase

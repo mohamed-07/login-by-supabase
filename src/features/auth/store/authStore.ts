@@ -39,7 +39,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ user: data.user, session: data.session });
     return { error: null };
   },
-  // SignIn with google 
+  // SignIn with google
   signInWithGoogle: async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -69,7 +69,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   resetPassword: async (email) => {
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: window.location.origin + '/update-password', // Redirect to reset password page after successful request
+      redirectTo: window.location.origin + '/update-password', // Redirect to reset password page after successful request
     });
     return { error: error ? error.message : null };
   },
