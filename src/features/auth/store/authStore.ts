@@ -74,7 +74,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       type: 'success',
       title: 'Success',
       description: 'Logged out successfully',
-      timeout: 800000,
+      timeout: 3000,
     });
   },
 
