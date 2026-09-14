@@ -34,6 +34,9 @@ export default function MoviesPage() {
   if (!data) {
     return null;
   }
+  console.log('DATA:', data);
+  console.log('RESULTS:', data.results);
+  console.log('IS ARRAY:', Array.isArray(data.results));
 
   return (
     <main className="container mx-auto px-4 py-8">
