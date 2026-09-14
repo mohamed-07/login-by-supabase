@@ -5,8 +5,10 @@ import RegisterPage from '@/features/auth/pages/RegisterPage';
 import ForgotPasswordPage from '@/features/auth/pages/ForgotPasswordPage';
 import { DashboardPage } from '@/features/dashboard/DashboardPage';
 import UpdatePasswordPage from '@/features/auth/pages/UpdatePasswordPage';
+import MouvisePage from '@/features/mouvise/page/MovisePage';
 import RootLayout from './RootLayout';
-import AppLayout from './applayout';
+import AppLayout from './AppLayout';
+import MovieDetailsPage from '@/features/mouvise/page/MovieDetailsPage';
 // import HomePage from "@/features/home/pages/HomePage";
 
 export const router = createBrowserRouter([
@@ -46,6 +48,14 @@ export const router = createBrowserRouter([
               {
                 path: '/dashboard',
                 element: <DashboardPage />,
+              },
+              {
+                path: '/movies',
+                element: <MouvisePage />,
+              },
+              {
+                path: '/tv-shows',
+                element: <MovieDetailsPage />,
               },
             ],
           },
