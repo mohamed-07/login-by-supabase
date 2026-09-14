@@ -39,7 +39,7 @@ export default function LoginForm() {
       setServerError(error);
       return;
     }
-    navigate('/dashboard');
+    navigate('/movies');
   };
   return (
     <Card className="w-full max-w-sm mx-auto mt-20">
