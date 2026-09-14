@@ -11,3 +11,4 @@ export const tmdbClient = axios.create({
   },
 });
 
+console.log('TMDB BASE URL:', import.meta.env.VITE_TMDB_API_URL);
