@@ -10,6 +10,9 @@ export const getMostPopularMovies = async (page: number): Promise<MoviesResponse
       page,
     },
   });
-  console.log('from movise APi');
+   console.log('TMDB URL:', response.config.url);
+   console.log('TMDB STATUS:', response.status);
+   console.log('TMDB CONTENT TYPE:', response.headers['content-type']);
+   console.log('TMDB DATA:', response.data);
   return response.data;
 };
