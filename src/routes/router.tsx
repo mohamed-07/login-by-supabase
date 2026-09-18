@@ -1,9 +1,9 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { createBrowserRouter, } from 'react-router-dom';
 import { ProtectedRoute } from './ProtectedRoute';
 import LoginPage from '@/features/auth/pages/LoginPage';
 import RegisterPage from '@/features/auth/pages/RegisterPage';
 import ForgotPasswordPage from '@/features/auth/pages/ForgotPasswordPage';
-import { DashboardPage } from '@/features/dashboard/DashboardPage';
+import { HomePage } from '@/features/home/pages/HomePage';
 import UpdatePasswordPage from '@/features/auth/pages/UpdatePasswordPage';
 import MouvisePage from '@/features/mouvise/page/MovisePage';
 import RootLayout from './RootLayout';
@@ -15,10 +15,10 @@ export const router = createBrowserRouter([
   {
     element: <RootLayout />,
     children: [
-      {
-        path: '/',
-        element: <Navigate to="/login" replace />,
-      },
+      // {
+      //   path: '/',
+      //   element: <Navigate to="/login" replace />,
+      // },
 
       // Public routes
       {
@@ -46,8 +46,12 @@ export const router = createBrowserRouter([
             element: <AppLayout />,
             children: [
               {
-                path: '/dashboard',
-                element: <DashboardPage />,
+                path: '/',
+                element: <HomePage />,
+              },
+              {
+                path: '/home',
+                element: <HomePage />,
               },
               {
                 path: '/movies',

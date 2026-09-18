@@ -34,16 +34,13 @@ export default function MoviesPage() {
   if (!data) {
     return null;
   }
-  console.log('DATA:', data);
-  console.log('RESULTS:', data.results);
-  console.log('IS ARRAY:', Array.isArray(data.results));
 
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold">Popular Movies</h1>
         <p className="mt-2 text-muted-foreground">
-          Discover popular movies from TMDB.
+          Discover popular movies.
         </p>
       </div>
 

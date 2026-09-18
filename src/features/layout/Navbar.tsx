@@ -15,7 +15,7 @@ import LogoutButton from '@/features/auth/components/LogoutButton';
 import { useAuthStore } from '../auth/store/authStore';
 
 const navItems = [
-  { name: 'Home', href: '/' },
+  { name: 'Home', href: '/home' },
   { name: 'Movies', href: '/movies' },
   { name: 'TV Shows', href: '/tv-shows' },
   { name: 'My List', href: '/my-list' },
