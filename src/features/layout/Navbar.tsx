@@ -24,7 +24,7 @@ const navItems = [
 export default function Navbar() {
   const { user } = useAuthStore();
   return (
-    <nav className="flex h-16 items-center gap-4 border-b px-4 md:px-6">
+    <nav className="sticky top-0 z-50 flex h-16 items-center gap-4 border-b bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/80 md:px-6">
       {/* Logo */}
       <div className="shrink-0 text-xl font-bold">Logo</div>
 
@@ -35,7 +35,7 @@ export default function Navbar() {
             key={item.name}
             href={item.href}
             className="text-sm font-medium hover:text-primary hover:cursor-pointer"
-          >  
+          >
             {item.name}
           </a>
         ))}
@@ -49,7 +49,7 @@ export default function Navbar() {
       <Avatar className="hidden md:flex">
         <AvatarImage src="/avatar.jpg" alt="User" />
         <AvatarFallback>MR</AvatarFallback>
-      </Avatar>  
+      </Avatar>
 
       {/* Mobile Burger */}
       <Sheet>
@@ -86,7 +86,7 @@ export default function Navbar() {
                 <AvatarFallback>MR</AvatarFallback>
               </Avatar>
 
-              <div className=''>
+              <div className="">
                 <p className="font-medium">{user?.user_metadata.first_name}</p>
                 <p className="text-sm text-muted-foreground">
                   {user?.user_metadata.email}

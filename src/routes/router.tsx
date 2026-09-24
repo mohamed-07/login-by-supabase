@@ -1,4 +1,4 @@
-import { createBrowserRouter, } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import { ProtectedRoute } from './ProtectedRoute';
 import LoginPage from '@/features/auth/pages/LoginPage';
 import RegisterPage from '@/features/auth/pages/RegisterPage';
@@ -9,6 +9,7 @@ import MouvisePage from '@/features/mouvise/page/MovisePage';
 import RootLayout from './RootLayout';
 import AppLayout from './AppLayout';
 import MovieDetailsPage from '@/features/mouvise/page/MovieDetailsPage';
+import TrendingAllPage from '@/features/home/pages/TrendingAllPage';
 // import HomePage from "@/features/home/pages/HomePage";
 
 export const router = createBrowserRouter([
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
               {
                 path: '/home',
                 element: <HomePage />,
+              },
+              {
+                path: '/trending',
+                element: <TrendingAllPage />,
               },
               {
                 path: '/movies',

@@ -10,5 +10,3 @@ export const tmdbClient = axios.create({
     Authorization: `Bearer ${import.meta.env.VITE_TMDB_READ_TOKEN}`,
   },
 });
-
-console.log('TMDB BASE URL:', import.meta.env.VITE_TMDB_API_URL);

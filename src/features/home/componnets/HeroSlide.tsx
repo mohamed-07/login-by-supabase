@@ -50,15 +50,15 @@ export function HeroSlide({
           contrast for the copy without dimming the whole still. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/40 to-transparent"
+        className="absolute inset-0 bg-linear-to-t from-obsidian-950 via-obsidian-950/40 to-transparent"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-r from-obsidian-950 via-obsidian-950/70 to-transparent"
+        className="absolute inset-0 bg-linear-to-r from-obsidian-950 via-obsidian-950/70 to-transparent"
       />
 
       <div className="relative flex h-full items-end pb-24 sm:items-center sm:pb-16">
-        <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-8 lg:px-14">
+        <div className="mx-auto w-full max-w-350 px-4 sm:px-8 lg:px-14">
           <div className="max-w-xl space-y-4 sm:space-y-5">
             <h2 className="text-3xl font-bold leading-[1.05] tracking-tight text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
               {item.title}

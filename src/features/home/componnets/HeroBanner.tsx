@@ -126,7 +126,7 @@ export default function HeroBanner({
                   className="group grid h-10 place-items-center px-0.5 focus-visible:outline-none"
                 >
                   <span
-                    className={`block h-[3px] rounded-full transition-all duration-300 group-focus-visible:ring-2 group-focus-visible:ring-signal-500 group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-obsidian-950 ${
+                    className={`block h-0.75 rounded-full transition-all duration-300 group-focus-visible:ring-2 group-focus-visible:ring-signal-500 group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-obsidian-950 ${
                       isCurrent
                         ? 'w-8 bg-signal-500'
                         : 'w-4 bg-white/40 group-hover:bg-white/70'
@@ -165,9 +165,9 @@ function HeroBannerSkeleton() {
   return (
     <div className={SHELL} role="status" aria-label="Loading trending titles">
       <Skeleton className="absolute inset-0 rounded-none bg-obsidian-900" />
-      <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-obsidian-950 to-transparent" />
       <div className="relative flex h-full items-end pb-24 sm:items-center sm:pb-16">
-        <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-8 lg:px-14">
+        <div className="mx-auto w-full max-w-350 px-4 sm:px-8 lg:px-14">
           <div className="max-w-xl space-y-5">
             <Skeleton className="h-12 w-3/4 bg-white/10 sm:h-16" />
             <Skeleton className="h-5 w-52 bg-white/10" />
@@ -191,7 +191,7 @@ function HeroBannerError({ onRetry }: { onRetry: () => void }) {
   return (
     <div className={SHELL}>
       <div className="flex h-full items-center">
-        <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-8 lg:px-14">
+        <div className="mx-auto w-full max-w-350 px-4 sm:px-8 lg:px-14">
           <div className="max-w-md space-y-3 text-left">
             <h2 className="text-2xl font-bold text-white sm:text-3xl">
               Trending titles didn&apos;t load
