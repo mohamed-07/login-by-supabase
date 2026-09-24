@@ -24,7 +24,7 @@ const navItems = [
 export default function Navbar() {
   const { user } = useAuthStore();
   return (
-    <nav className="sticky top-0 z-50 flex h-16 items-center gap-4 border-b bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/80 md:px-6">
+    <nav className="sticky top-0 z-50 flex h-16 items-center gap-4 border-b bg-background/95 px-4 backdrop-blur supports-backdrop-filter:bg-background/80 md:px-6">
       {/* Logo */}
       <div className="shrink-0 text-xl font-bold">Logo</div>
 
@@ -41,7 +41,7 @@ export default function Navbar() {
         ))}
       </div>
       {/* Search - visible on mobile AND desktop */}
-      <div className="ml-auto w-full max-w-[220px] sm:max-w-xs">
+      <div className="ml-auto w-full max-w-55 sm:max-w-xs">
         <Input type="search" placeholder="Search..." />
       </div>
 
