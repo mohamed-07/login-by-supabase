@@ -8,7 +8,7 @@ import UpdatePasswordPage from '@/features/auth/pages/UpdatePasswordPage';
 import MouvisePage from '@/features/mouvise/page/MovisePage';
 import RootLayout from './RootLayout';
 import AppLayout from './AppLayout';
-import MovieDetailsPage from '@/features/mouvise/page/MovieDetailsPage';
+import MovisTvDetailsPage from '@/features/movisTvDetails/pages/MovisTvDetailsPage';
 import TrendingAllPage from '@/features/home/pages/TrendingAllPage';
 // import HomePage from "@/features/home/pages/HomePage";
 
@@ -59,12 +59,16 @@ export const router = createBrowserRouter([
                 element: <TrendingAllPage />,
               },
               {
+                path: '/details/:mediaType/:id',
+                element: <MovisTvDetailsPage />,
+              },
+              {
                 path: '/movies',
                 element: <MouvisePage />,
               },
               {
                 path: '/tv-shows',
-                element: <MovieDetailsPage />,
+                element: <MovisTvDetailsPage />,
               },
             ],
           },

@@ -2,7 +2,7 @@ import { Check, Info, Plus, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { backdropSrcSet, backdropUrl } from '../lib/tmdbImage';
 import type { HeroItem } from '../types/hero.type';
 
@@ -103,20 +103,22 @@ export function HeroSlide({
 
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <div className="flex flex-wrap items-center gap-3 pt-1">
-                <Button
-                  size="lg"
+                <Link
+                  to={item.detailsHref}
                   tabIndex={isActive ? undefined : -1}
-                  className="whitespace-nowrap bg-white text-obsidian-950 hover:bg-white/85 focus-visible:ring-signal-500 hover:cursor-pointer"
+                  className={buttonVariants({
+                    size: 'lg',
+                    className:
+                      'whitespace-nowrap bg-white text-black hover:bg-white/85 focus-visible:ring-signal-500 hover:cursor-pointer',
+                  })}
                 >
-                  <Link
-                    to={item.detailsHref}
-                    className="flex items-center gap-2"
-                  >
-                    <Info className="h-4 w-4 shrink-0" aria-hidden="true" />
-                    <span>View details</span>
-                    <span className="sr-only"> for {item.title}</span>
-                  </Link>
-                </Button>
+                  <Info
+                    className="h-4 w-4 shrink-0 text-black"
+                    aria-hidden="true"
+                  />
+                  <span className="text-black">View details</span>
+                  <span className="sr-only"> for {item.title}</span>
+                </Link>
               </div>
 
               {/* Neutral at rest; turns Signal Red on hover/focus so the

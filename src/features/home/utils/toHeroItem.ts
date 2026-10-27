@@ -42,6 +42,6 @@ export function toHeroItem(item: BannerSource, genres: GenreMaps): HeroItem {
       .map((id) => lookup.get(id))
       .filter((name): name is string => Boolean(name))
       .slice(0, 3),
-    detailsHref: `/${item.media_type}/${item.id}`,
+    detailsHref: `/details/${item.media_type}/${item.id}`,
   };
 }
