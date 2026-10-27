@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Star } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -37,47 +38,73 @@ export function Trending() {
           const name = item.media_type === 'movie' ? item.title : item.name;
           const imagePath =
             item.media_type === 'person' ? item.profile_path : item.poster_path;
+          const detailItem =
+            item.media_type === 'person' ? item.known_for[0] : item;
 
           return (
             <article key={`${item.media_type}-${item.id}`} className="group">
-              <div className="relative overflow-hidden rounded-lg">
-                <img
-                  src={
-                    imagePath
-                      ? `${IMAGE_BASE_URL}${imagePath}`
-                      : '/placeholder.jpg'
-                  }
-                  alt={name}
-                  loading="lazy"
-                  className=" cursor-pointer aspect-2/3 w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute inset-x-1 top-1 flex items-start justify-between gap-1">
-                  <div
-                    className={`text-[10px] font-semibold ${
-                      item.media_type === 'tv'
-                        ? 'text-green-600'
-                        : item.media_type === 'movie'
-                          ? 'text-red-600'
-                          : 'text-muted-foreground'
-                    }`}
-                  >
-                    {item.media_type === 'movie'
-                      ? 'Movie'
-                      : item.media_type === 'tv'
-                        ? 'TV'
-                        : 'Person'}
+              {detailItem ? (
+                <Link
+                  to={`/details/${detailItem.media_type}/${detailItem.id}`}
+                  aria-label={`View details for ${name}`}
+                  className="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <div className="relative overflow-hidden rounded-lg">
+                    <img
+                      src={
+                        imagePath
+                          ? `${IMAGE_BASE_URL}${imagePath}`
+                          : '/placeholder.jpg'
+                      }
+                      alt={name}
+                      loading="lazy"
+                      className="aspect-2/3 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-x-1 top-1 flex items-start justify-between gap-1">
+                      <div
+                        className={`text-[10px] font-semibold ${
+                          item.media_type === 'tv'
+                            ? 'text-green-600'
+                            : item.media_type === 'movie'
+                              ? 'text-red-600'
+                              : 'text-muted-foreground'
+                        }`}
+                      >
+                        {item.media_type === 'movie'
+                          ? 'Movie'
+                          : item.media_type === 'tv'
+                            ? 'TV'
+                            : 'Person'}
+                      </div>
+                      <div className="flex shrink-0 items-center gap-1 rounded-md bg-black/75 px-1.5 py-0.5 text-[10px] font-semibold text-white">
+                        <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                        {item.media_type === 'person'
+                          ? 'N/A'
+                          : item.vote_average.toFixed(1)}
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex shrink-0 items-center gap-1 rounded-md bg-black/75 px-1.5 py-0.5 text-[10px] font-semibold text-white">
-                    <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                    {item.media_type === 'person'
-                      ? 'N/A'
-                      : item.vote_average.toFixed(1)}
-                  </div>
+                  <p className="mt-2 truncate text-center text-sm font-medium">
+                    {name}
+                  </p>
+                </Link>
+              ) : (
+                <div className="overflow-hidden rounded-lg opacity-70">
+                  <img
+                    src={
+                      imagePath
+                        ? `${IMAGE_BASE_URL}${imagePath}`
+                        : '/placeholder.jpg'
+                    }
+                    alt={name}
+                    loading="lazy"
+                    className="aspect-2/3 w-full object-cover"
+                  />
+                  <p className="mt-2 truncate text-center text-sm font-medium">
+                    {name}
+                  </p>
                 </div>
-              </div>
-              <p className="mt-2 truncate text-center text-sm font-medium">
-                {name}
-              </p>
+              )}
             </article>
           );
         })}

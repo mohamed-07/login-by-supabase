@@ -40,9 +40,7 @@ export default function HeroBanner({
   const prefersReducedMotion = usePrefersReducedMotion();
 
   const [api, setApi] = useState<CarouselApi>();
-  // Created once and handed to Embla; the same object is mutated in place
-  // with play()/stop()/isPlaying() once the carousel mounts, so this ref is
-  // what both Embla and our own controls talk to.
+
   const [autoplay] = useState(
     Autoplay({
       delay: 8000,
@@ -90,9 +88,7 @@ export default function HeroBanner({
           ))}
         </CarouselContent>
 
-        {/* Arrows are a pointer affordance — keyboard users get the arrow
-            keys (Carousel's own onKeyDownCapture handles those) and the
-            dots below. */}
+
         <CarouselPrevious
           tabIndex={-1}
           aria-hidden="true"
