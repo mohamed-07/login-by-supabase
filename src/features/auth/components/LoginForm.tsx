@@ -22,7 +22,6 @@ export default function LoginForm() {
   const signIn = useAuthStore((state) => state.signIn);
   const signInWithGoogle = useAuthStore((state) => state.signInWithGoogle);
   const navigate = useNavigate();
-  // const [showPassword, setShowPassword] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const {
     register,
@@ -39,7 +38,7 @@ export default function LoginForm() {
       setServerError(error);
       return;
     }
-    navigate('/movies');
+    navigate('/home');
   };
   return (
     <Card className="w-full max-w-sm mx-auto mt-20">

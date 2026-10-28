@@ -16,11 +16,6 @@ export const router = createBrowserRouter([
   {
     element: <RootLayout />,
     children: [
-      // {
-      //   path: '/',
-      //   element: <Navigate to="/login" replace />,
-      // },
-
       // Public routes
       {
         path: '/login',
