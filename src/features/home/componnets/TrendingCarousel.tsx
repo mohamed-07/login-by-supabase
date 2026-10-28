@@ -38,7 +38,7 @@ export const TrendingCarousel = () => {
       <CarouselContent>
         {items.map((item) => {
           const detailItem =
-            item.media_type === 'person' ? item.known_for[0] : item;
+            item.media_type === 'person' ? item.known_for?.[0] : item;
 
           return (
             <CarouselItem

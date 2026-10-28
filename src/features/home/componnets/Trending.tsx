@@ -39,7 +39,7 @@ export function Trending() {
           const imagePath =
             item.media_type === 'person' ? item.profile_path : item.poster_path;
           const detailItem =
-            item.media_type === 'person' ? item.known_for[0] : item;
+            item.media_type === 'person' ? item.known_for?.[0] : item;
 
           return (
             <article key={`${item.media_type}-${item.id}`} className="group">
