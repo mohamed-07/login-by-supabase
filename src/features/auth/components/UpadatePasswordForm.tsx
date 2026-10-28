@@ -37,6 +37,7 @@ export default function UpadatePasswordForm() {
     const { error } = await updatepassword(data.password);
     if (error) {
       setServerError(error);
+      return;
     } else {
       setSuccessMessage('Password updated successfully!');
     }

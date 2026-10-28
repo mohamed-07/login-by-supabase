@@ -45,7 +45,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: window.location.origin + '/dashboard', // Redirect to dashboard after successful login
+        redirectTo: window.location.origin + '/home'
       },
     });
     if (error) return { error: error.message };
