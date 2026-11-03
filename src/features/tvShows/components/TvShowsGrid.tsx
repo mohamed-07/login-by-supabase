@@ -1,4 +1,4 @@
-import type { TvShow } from '../types/tvshows.type';
+import type { TvShow } from '../types/tvShows.type';
 import { TvShowCard } from './TvShowCard';
 
 interface TvShowsGridProps {

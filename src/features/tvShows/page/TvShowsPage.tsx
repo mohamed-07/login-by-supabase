@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { usePopularTvShows } from '../hooks/usePopularTvShows';
-import { TvShowsGrid } from '../components/TvShowsgrid';
+import { TvShowsGrid } from '../components/TvShowsGrid';
 import { TvShowsGridSkeleton } from '../components/TvShowsGridSkeleton';
 
 export default function TvShows() {

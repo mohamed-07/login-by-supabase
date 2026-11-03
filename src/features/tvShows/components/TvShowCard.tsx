@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { TvShow } from '../types/tvshows.type';
+import type { TvShow } from '../types/tvShows.type';
 
 interface TvShowCardProps {
   show: TvShow;
