@@ -28,10 +28,10 @@ export default function RegisterForm() {
   const onSubmit = async (data: RegisterFormValues) => {
     setServerError(null);
     const { error } = await signUp(
-      data.email,
-      data.password,
       data.firstName,
-      data.lastName
+      data.lastName,
+      data.email,
+      data.password
     );
     if (error) {
       setServerError(error);
@@ -39,7 +39,7 @@ export default function RegisterForm() {
     }
     setSuccess(true);
     // إذا كان تأكيد البريد مفعّلاً في Supabase، لا تنتقل مباشرة here need more logic to handle email confirmation
-    setTimeout(() => navigate('/dashboard'), 2000);
+    setTimeout(() => navigate('/home'), 2000);
   };
   return (
     <Card className="w-full max-w-sm mx-auto mt-20">

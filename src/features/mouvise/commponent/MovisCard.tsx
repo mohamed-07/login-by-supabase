@@ -1,4 +1,5 @@
 import type { Movie } from '../types/movise.type';
+import { Link } from 'react-router-dom';
 
 interface MovieCardProps {
   movie: Movie;
@@ -6,15 +7,19 @@ interface MovieCardProps {
 
 export function MovieCard({ movie }: MovieCardProps) {
   return (
-    <div className="group overflow-hidden rounded-lg bg-card cursor-pointer shadow-md transition-shadow duration-300 hover:shadow-lg">
+    <Link
+      to={`/details/movie/${movie.id}`}
+      aria-label={`View details for ${movie.title}`}
+      className="group block overflow-hidden rounded-lg bg-card shadow-md transition-shadow duration-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+    >
       <img
         src={
           movie.poster_path
             ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
             : '/placeholder-movie.jpg'
         }
-              alt={movie.title}
-              loading='lazy'
+        alt={movie.title}
+        loading="lazy"
         className="aspect-2/3 w-full object-cover transition-transform duration-300 group-hover:scale-105"
       />
 
@@ -26,6 +31,6 @@ export function MovieCard({ movie }: MovieCardProps) {
           <span>⭐ {movie.vote_average.toFixed(1)}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

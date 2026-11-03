@@ -11,6 +11,7 @@ import AppLayout from './AppLayout';
 import MovisTvDetailsPage from '@/features/movisTvDetails/pages/MovisTvDetailsPage';
 import TrendingAllPage from '@/features/home/pages/TrendingAllPage';
 import MyList from '@/features/myList/page/MyList';
+import TvShowsPage from '@/features/tvShows/page/TvShowsPage';
 // import HomePage from "@/features/home/pages/HomePage";
 
 export const router = createBrowserRouter([
@@ -64,7 +65,7 @@ export const router = createBrowserRouter([
               },
               {
                 path: '/tv-shows',
-                element: <MovisTvDetailsPage />,
+                element: <TvShowsPage />,
               },
               {
                 path: '/my-list',
