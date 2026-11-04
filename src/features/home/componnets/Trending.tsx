@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Star } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -9,6 +9,7 @@ import { useTrendingAll } from '../hooks/useTrending';
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
 export function Trending() {
+  const location = useLocation();
   const [page, setPage] = useState(1);
   const { data, isLoading, isError } = useTrendingAll(page);
 
@@ -46,6 +47,9 @@ export function Trending() {
               {detailItem ? (
                 <Link
                   to={`/details/${detailItem.media_type}/${detailItem.id}`}
+                  state={{
+                    from: `${location.pathname}${location.search}${location.hash}`,
+                  }}
                   aria-label={`View details for ${name}`}
                   className="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >

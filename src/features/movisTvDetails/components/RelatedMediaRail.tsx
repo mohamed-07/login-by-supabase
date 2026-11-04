@@ -1,5 +1,5 @@
 import { Star } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Skeleton } from '@/components/ui/skeleton';
 import type { MediaType, RelatedMedia } from '../types/mediaDetails.type';
 
@@ -16,6 +16,8 @@ export function RelatedMediaRail({
   mediaType,
   isLoading,
 }: RelatedMediaRailProps) {
+  const location = useLocation();
+
   if (!isLoading && items.length === 0) return null;
 
   return (
@@ -50,6 +52,9 @@ export function RelatedMediaRail({
               <Link
                 key={`${itemType}-${item.id}`}
                 to={`/details/${itemType}/${item.id}`}
+                state={{
+                  from: `${location.pathname}${location.search}${location.hash}`,
+                }}
                 aria-label={`View details for ${title}`}
                 className="group w-36 shrink-0 snap-start rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 sm:w-44"
               >

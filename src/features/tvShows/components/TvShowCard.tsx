@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import type { TvShow } from '../types/tvShows.type';
 
 interface TvShowCardProps {
@@ -6,8 +6,15 @@ interface TvShowCardProps {
 }
 
 export function TvShowCard({ show }: TvShowCardProps) {
+  const location = useLocation();
+
   return (
-    <Link to={`/details/tv/${show.id}`}>
+    <Link
+      to={`/details/tv/${show.id}`}
+      state={{
+        from: `${location.pathname}${location.search}${location.hash}`,
+      }}
+    >
       <article className="overflow-hidden rounded-lg">
         <img
           src={
@@ -17,7 +24,7 @@ export function TvShowCard({ show }: TvShowCardProps) {
           }
           alt={show.name}
           loading="lazy"
-          className="aspect-[2/3] w-full object-cover"
+          className="aspect-2/3 w-full object-cover"
         />
 
         <div className="mt-2">

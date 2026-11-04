@@ -1,5 +1,5 @@
 import { Check, Info, Plus, Star } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { Badge } from '@/components/ui/badge';
 import { Button, buttonVariants } from '@/components/ui/button';
@@ -25,6 +25,8 @@ export function HeroSlide({
   isInList,
   onAddToList,
 }: HeroSlideProps) {
+  const location = useLocation();
+
   return (
     <article
       role="group"
@@ -105,6 +107,9 @@ export function HeroSlide({
               <div className="flex flex-wrap items-center gap-3 pt-1">
                 <Link
                   to={item.detailsHref}
+                  state={{
+                    from: `${location.pathname}${location.search}${location.hash}`,
+                  }}
                   tabIndex={isActive ? undefined : -1}
                   className={buttonVariants({
                     size: 'lg',

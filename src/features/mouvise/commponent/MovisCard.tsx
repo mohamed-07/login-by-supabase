@@ -1,14 +1,19 @@
 import type { Movie } from '../types/movise.type';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 interface MovieCardProps {
   movie: Movie;
 }
 
 export function MovieCard({ movie }: MovieCardProps) {
+  const location = useLocation();
+
   return (
     <Link
       to={`/details/movie/${movie.id}`}
+      state={{
+        from: `${location.pathname}${location.search}${location.hash}`,
+      }}
       aria-label={`View details for ${movie.title}`}
       className="group block overflow-hidden rounded-lg bg-card shadow-md transition-shadow duration-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
     >

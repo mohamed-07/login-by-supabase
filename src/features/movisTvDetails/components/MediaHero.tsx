@@ -1,5 +1,5 @@
 import { BookmarkPlus, Clock3, Info, Play, Star } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { buttonVariants } from '@/components/ui/button';
 import { backdropSrcSet, backdropUrl } from '@/features/home/lib/tmdbImage';
 import type {
@@ -21,6 +21,9 @@ export function MediaHero({
   certification,
   videos,
 }: MediaHeroProps) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = (location.state as { from?: unknown } | null)?.from;
   const title = data.title ?? data.name ?? 'Untitled';
   const released = data.release_date ?? data.first_air_date;
   const year = released?.slice(0, 4);
@@ -62,12 +65,19 @@ export function MediaHero({
       <div className="container mx-auto flex min-h-[76svh] items-end px-4 pb-14 pt-28 sm:min-h-[82svh] sm:px-8 sm:pb-20 lg:px-14">
         <div className="grid w-full max-w-6xl items-end gap-8 sm:grid-cols-[minmax(0,1fr)_200px] lg:gap-14">
           <div className="max-w-3xl">
-            <Link
-              to="/trending"
+            <button
+              type="button"
+              onClick={() => {
+                if (typeof from === 'string' && from.startsWith('/')) {
+                  navigate(-1);
+                } else {
+                  navigate('/trending', { replace: true });
+                }
+              }}
               className="mb-7 inline-flex items-center gap-2 text-sm text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
             >
-              <span aria-hidden="true">‹</span> Back to trending
-            </Link>
+              <span aria-hidden="true">‹</span> Back
+            </button>
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-red-400">
               {mediaType === 'tv' ? 'Series' : 'Feature film'}
             </p>

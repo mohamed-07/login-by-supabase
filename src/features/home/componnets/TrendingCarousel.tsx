@@ -6,13 +6,14 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Star } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { useTrendingAll } from '../hooks/useTrending';
 
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
 export const TrendingCarousel = () => {
+  const location = useLocation();
   const { data, isLoading, isError } = useTrendingAll(1);
 
   // console.log('TrendingCarousel data From trendingCarousel:', data);
@@ -51,6 +52,9 @@ export const TrendingCarousel = () => {
                     ? `/details/${detailItem.media_type}/${detailItem.id}`
                     : '#'
                 }
+                state={{
+                  from: `${location.pathname}${location.search}${location.hash}`,
+                }}
                 aria-disabled={!detailItem}
                 tabIndex={detailItem ? undefined : -1}
                 onClick={(event) => {
