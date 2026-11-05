@@ -3,7 +3,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 export function TvShowSkeleton() {
   return (
     <article className="overflow-hidden rounded-lg">
-      <Skeleton className="aspect-[2/3] w-full" />
+      <Skeleton className="aspect-2/3 w-full" />
 
       <div className="mt-2 space-y-2">
         <Skeleton className="h-5 w-3/4" />

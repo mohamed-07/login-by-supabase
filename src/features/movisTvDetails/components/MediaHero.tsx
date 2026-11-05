@@ -76,7 +76,7 @@ export function MediaHero({
               }}
               className="mb-7 inline-flex items-center gap-2 text-sm text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
             >
-              <span aria-hidden="true">‹</span> Back
+              <span aria-hidden="true">‹</span> Back 
             </button>
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-red-400">
               {mediaType === 'tv' ? 'Series' : 'Feature film'}
