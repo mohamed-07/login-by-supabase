@@ -93,8 +93,10 @@ export const TrendingCarousel = () => {
         })}
       </CarouselContent>
 
-      <CarouselPrevious className="cursor-pointer" />
-      <CarouselNext className="cursor-pointer" />
+      {/* <CarouselPrevious className="cursor-pointer" />
+      <CarouselNext className="cursor-pointer bg-red-800" /> */}
+      <CarouselPrevious className="left-2 z-10 hidden cursor-pointer sm:flex" />
+      <CarouselNext className="right-2 z-10 hidden cursor-pointer sm:flex" />
     </Carousel>
   );
 };
