@@ -34,7 +34,7 @@ export const TrendingCarousel = () => {
         dragFree: true,
         loop: true,
       }}
-      className="w-full"
+      className="w-full group/carousel"
     >
       <CarouselContent>
         {items.map((item) => {
@@ -95,8 +95,12 @@ export const TrendingCarousel = () => {
 
       {/* <CarouselPrevious className="cursor-pointer" />
       <CarouselNext className="cursor-pointer bg-red-800" /> */}
-      <CarouselPrevious className="left-2 z-10 hidden cursor-pointer sm:flex" />
-      <CarouselNext className="right-2 z-10 hidden cursor-pointer sm:flex" />
+      <CarouselPrevious className="-left-9 z-10 hidden border-0 bg-background/70 shadow-lg focus-visible:opacity-100 cursor-pointer sm:flex" />
+      <CarouselNext className="-right-9 z-10 hidden border-0 bg-background/70 shadow-lg focus-visible:opacity-100 cursor-pointer sm:flex" />
+
+      {/* <CarouselPrevious className="left-2 top-[42%] z-10 hidden cursor-pointer border-0 bg-background/70 shadow-lg backdrop-blur-sm transition-opacity hover:bg-background focus-visible:opacity-100 disabled:invisible sm:flex sm:opacity-0 sm:group-hover/carousel:opacity-100" />
+      <CarouselNext className="right-2 top-[32%] z-10 hidden cursor-pointer border-0 bg-background/70 shadow-lg backdrop-blur-sm transition-opacity hover:bg-background focus-visible:opacity-100 disabled:invisible sm:flex sm:opacity-0 sm:group-hover/carousel:opacity-100" />
+     */}
     </Carousel>
   );
 };
