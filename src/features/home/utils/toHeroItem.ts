@@ -32,6 +32,7 @@ export function toHeroItem(item: BannerSource, genres: GenreMaps): HeroItem {
     id: item.id,
     mediaType: item.media_type,
     title: title || 'Untitled',
+    posterPath: item.poster_path ?? null,
     overview:
       item.overview?.trim() || 'No overview has been added for this title yet.',
     backdropPath: item.backdrop_path,

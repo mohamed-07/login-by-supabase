@@ -1,10 +1,14 @@
-import { Check, Info, Plus, Star } from 'lucide-react';
+import { Info, Star } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { Badge } from '@/components/ui/badge';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 import { backdropSrcSet, backdropUrl } from '../lib/tmdbImage';
 import type { HeroItem } from '../types/hero.type';
+
+// Add to my list button
+import { MyListButton } from '@/features/myList';
+// import { MediaCard } from '@/components/MediaCard';
 
 export interface HeroSlideProps {
   item: HeroItem;
@@ -13,8 +17,8 @@ export interface HeroSlideProps {
   total: number;
   /** Off-screen slides are hidden from assistive tech and taken out of the tab order. */
   isActive: boolean;
-  isInList: boolean;
-  onAddToList?: (item: HeroItem) => void;
+  // isInList: boolean;
+  // onAddToList?: (item: HeroItem) => void;
 }
 
 export function HeroSlide({
@@ -22,11 +26,13 @@ export function HeroSlide({
   index,
   total,
   isActive,
-  isInList,
-  onAddToList,
+  // isInList,
+  // onAddToList,
 }: HeroSlideProps) {
   const location = useLocation();
-
+  // test 
+  // console.log('Hero item:', item);
+  // console.log('Poster path:', item.posterPath);
   return (
     <article
       role="group"
@@ -86,7 +92,7 @@ export function HeroSlide({
                 variant="outline"
                 className="border-white/25 font-medium text-white/70"
               >
-                {item.mediaType === 'tv' ? 'Series' : 'Film'}
+                {item.mediaType === 'tv' ? 'Series' : 'Movie'}
               </Badge>
 
               {item.genres.length > 0 && (
@@ -103,48 +109,47 @@ export function HeroSlide({
               {item.overview}
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              <div className="flex flex-wrap items-center gap-3 pt-1">
-                <Link
-                  to={item.detailsHref}
-                  state={{
-                    from: `${location.pathname}${location.search}${location.hash}`,
-                  }}
-                  tabIndex={isActive ? undefined : -1}
-                  className={buttonVariants({
-                    size: 'lg',
-                    className:
-                      'whitespace-nowrap bg-white text-black hover:bg-white/85 focus-visible:ring-signal-500 hover:cursor-pointer',
-                  })}
-                >
-                  <Info
-                    className="h-4 w-4 shrink-0 text-black"
-                    aria-hidden="true"
-                  />
-                  <span className="text-black">View details</span>
-                  <span className="sr-only"> for {item.title}</span>
-                </Link>
-              </div>
-
+            <div className="flex items-center gap-2 pt-1">
+              {/* <div className="flex flex-wrap items-center gap-3 pt-1"> */}
+              <Link
+                to={item.detailsHref}
+                state={{
+                  from: `${location.pathname}${location.search}${location.hash}`,
+                }}
+                tabIndex={isActive ? undefined : -1}
+                className={buttonVariants({
+                  size: 'lg',
+                  className:
+                    'whitespace-nowrap bg-white text-black hover:bg-white/85 focus-visible:ring-signal-500 hover:cursor-pointer',
+                })}
+              >
+                <Info
+                  className="h-4 w-4 shrink-0 text-black"
+                  aria-hidden="true"
+                />
+                <span className="text-black">View details</span>
+                <span className="sr-only"> for {item.title}</span>
+              </Link>
+              {/* </div> */}
               {/* Neutral at rest; turns Signal Red on hover/focus so the
                   brand accent marks the one "collection" action in the banner. */}
-              <Button
-                type="button"
-                size="lg"
-                variant="outline"
+
+              {/* ****************************** */}
+              {/* we need to start from UI button Fnisht at 15:07 hero slide file   */}
+
+              <MyListButton
+                showLabel
                 tabIndex={isActive ? undefined : -1}
-                aria-pressed={isInList}
-                onClick={() => onAddToList?.(item)}
-                className="border-white/25 bg-white/10 text-white backdrop-blur-sm hover:border-signal-600 hover:bg-signal-600 hover:text-white focus-visible:ring-signal-500 hover:cursor-pointer"
-              >
-                {isInList ? (
-                  <Check className="h-4 w-4" aria-hidden="true" />
-                ) : (
-                  <Plus className="h-4 w-4" aria-hidden="true" />
-                )}
-                {isInList ? 'In my list' : 'Add to my list'}
-                <span className="sr-only"> — {item.title}</span>
-              </Button>
+                className=" gap-2 border border-white/25 bg-white/10 text-white backdrop-blur-sm hover:bg-signal-600 hover:text-white hover:cursor-pointer"
+                item={{
+                  media_id: item.id,
+                  media_type: item.mediaType,
+                  title: item.title,
+                  poster_path: item.posterPath ?? null,
+                  vote_average: item.rating ?? null,
+                }}
+              />
+              {/* ****************************** */}
             </div>
           </div>
         </div>

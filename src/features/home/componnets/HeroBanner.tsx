@@ -16,16 +16,16 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useHeroCarousel } from '../hooks/useHeroCarousel';
 import { useHeroItems } from '../hooks/useHeroItems';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
-import type { HeroItem } from '../types/hero.type';
+// import type { HeroItem } from '../types/hero.type';
 import { HeroSlide } from './HeroSlide';
 
 export interface HeroBannerProps {
   /** How many trending titles to show. */
   count?: number;
   /** IDs already saved to the user's list — drives the button's pressed state. */
-  myListIds?: ReadonlySet<number>;
+  // myListIds?: ReadonlySet<number>;
   /** Wire this to your Supabase "my list" mutation. */
-  onAddToList?: (item: HeroItem) => void;
+  // onAddToList?: (item: HeroItem) => void;
 }
 
 const SHELL =
@@ -33,8 +33,8 @@ const SHELL =
 
 export default function HeroBanner({
   count = 7,
-  myListIds,
-  onAddToList,
+  // myListIds,
+  // onAddToList,
 }: HeroBannerProps) {
   const { items, isLoading, isError, refetch } = useHeroItems(count);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -81,8 +81,8 @@ export default function HeroBanner({
                 index={index}
                 total={items.length}
                 isActive={index === activeIndex}
-                isInList={myListIds?.has(item.id) ?? false}
-                onAddToList={onAddToList}
+                // isInList={myListIds?.has(item.id) ?? false}
+                // onAddToList={onAddToList}
               />
             </CarouselItem>
           ))}

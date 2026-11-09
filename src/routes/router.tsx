@@ -10,7 +10,7 @@ import RootLayout from './RootLayout';
 import AppLayout from './AppLayout';
 import MovisTvDetailsPage from '@/features/movisTvDetails/pages/MovisTvDetailsPage';
 import TrendingAllPage from '@/features/home/pages/TrendingAllPage';
-import MyList from '@/features/myList/page/MyList';
+import MyList from '@/features/myList/pages/MyListPage';
 import TvShowsPage from '@/features/tvShows/page/TvShowsPage';
 // import HomePage from "@/features/home/pages/HomePage";
 

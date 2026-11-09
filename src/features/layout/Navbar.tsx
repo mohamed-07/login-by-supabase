@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/sheet';
 
 import LogoutButton from '@/features/auth/components/LogoutButton';
-import { useAuthStore } from '../auth/store/authStore';
+import { useAuthStore } from '../auth/store/authStore';// for getting the user data from the store
 
 const navItems = [
   { name: 'Home', href: '/home' },
