@@ -5,6 +5,7 @@ export interface HeroItem {
   title: string;
   overview: string;
   backdropPath: string;
+  posterPath: string | null;
   /** Four-digit year, or null when TMDB has no date yet. */
   year: string | null;
   /** 0–10, one decimal. Null when the title is unrated. */
