@@ -11,15 +11,10 @@ export type BannerSource = (TrendingMovie | TrendingTVShow) & {
   backdrop_path: string;
 };
 
-/**
- * Type guard, not a plain filter callback: it drops `TrendingPerson` (which
- * `/trending/all` always mixes in) and any title without a backdrop, and tells
- * TypeScript both facts — so `toHeroItem` below never has to re-check either.
- */
 export function canFillBanner(item: Trending): item is BannerSource {
   return item.media_type !== 'person' && item.backdrop_path !== null;
 }
-
+// /** Converts a movie or TV show into the data format used by the home-page banner. */
 export function toHeroItem(item: BannerSource, genres: GenreMaps): HeroItem {
   // Compared inline rather than via an `isMovie` boolean — narrowing a
   // discriminated union only flows through the comparison itself.

@@ -19,23 +19,13 @@ import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 // import type { HeroItem } from '../types/hero.type';
 import { HeroSlide } from './HeroSlide';
 
-export interface HeroBannerProps {
-  /** How many trending titles to show. */
-  count?: number;
-  /** IDs already saved to the user's list — drives the button's pressed state. */
-  // myListIds?: ReadonlySet<number>;
-  /** Wire this to your Supabase "my list" mutation. */
-  // onAddToList?: (item: HeroItem) => void;
-}
+export interface HeroBannerProps {count?: number}
 
 const SHELL =
   'relative h-[70vh] min-h-[480px] w-full overflow-hidden bg-obsidian-950 sm:h-[80vh] lg:h-[88vh]';
 
-export default function HeroBanner({
-  count = 7,
-  // myListIds,
-  // onAddToList,
-}: HeroBannerProps) {
+export default function HeroBanner({ count = 7 }: HeroBannerProps) {
+  
   const { items, isLoading, isError, refetch } = useHeroItems(count);
   const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -81,8 +71,6 @@ export default function HeroBanner({
                 index={index}
                 total={items.length}
                 isActive={index === activeIndex}
-                // isInList={myListIds?.has(item.id) ?? false}
-                // onAddToList={onAddToList}
               />
             </CarouselItem>
           ))}
@@ -183,6 +171,7 @@ function HeroBannerSkeleton() {
   );
 }
 
+// For the error state, we need a retry button to refetch the trending titles
 function HeroBannerError({ onRetry }: { onRetry: () => void }) {
   return (
     <div className={SHELL}>

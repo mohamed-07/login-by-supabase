@@ -6,9 +6,9 @@ import { buttonVariants } from '@/components/ui/button';
 import { backdropSrcSet, backdropUrl } from '../lib/tmdbImage';
 import type { HeroItem } from '../types/hero.type';
 
-// Add to my list button
+
 import { MyListButton } from '@/features/myList';
-// import { MediaCard } from '@/components/MediaCard';
+
 
 export interface HeroSlideProps {
   item: HeroItem;
@@ -17,8 +17,6 @@ export interface HeroSlideProps {
   total: number;
   /** Off-screen slides are hidden from assistive tech and taken out of the tab order. */
   isActive: boolean;
-  // isInList: boolean;
-  // onAddToList?: (item: HeroItem) => void;
 }
 
 export function HeroSlide({
@@ -26,13 +24,9 @@ export function HeroSlide({
   index,
   total,
   isActive,
-  // isInList,
-  // onAddToList,
 }: HeroSlideProps) {
   const location = useLocation();
-  // test 
-  // console.log('Hero item:', item);
-  // console.log('Poster path:', item.posterPath);
+
   return (
     <article
       role="group"
@@ -110,7 +104,6 @@ export function HeroSlide({
             </p>
 
             <div className="flex items-center gap-2 pt-1">
-              {/* <div className="flex flex-wrap items-center gap-3 pt-1"> */}
               <Link
                 to={item.detailsHref}
                 state={{
@@ -130,13 +123,7 @@ export function HeroSlide({
                 <span className="text-black">View details</span>
                 <span className="sr-only"> for {item.title}</span>
               </Link>
-              {/* </div> */}
-              {/* Neutral at rest; turns Signal Red on hover/focus so the
-                  brand accent marks the one "collection" action in the banner. */}
-
-              {/* ****************************** */}
-              {/* we need to start from UI button Fnisht at 15:07 hero slide file   */}
-
+              {/* **************************** */}
               <MyListButton
                 showLabel
                 tabIndex={isActive ? undefined : -1}
