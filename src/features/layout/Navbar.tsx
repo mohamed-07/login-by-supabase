@@ -1,5 +1,7 @@
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { cn } from '@/lib/utils';
 import { Menu } from 'lucide-react';
-
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -23,6 +25,8 @@ const navItems = [
 
 export default function Navbar() {
   const { user } = useAuthStore();
+  const [open, setOpen] = useState(false);
+
   return (
     <nav className="sticky top-0 z-50 flex h-16 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur supports-backdrop-filter:bg-background/80 sm:gap-4 md:px-6">
       {/* Logo */}
@@ -31,13 +35,18 @@ export default function Navbar() {
       {/* Desktop navigation */}
       <div className="hidden items-center gap-6 md:flex">
         {navItems.map((item) => (
-          <a
+          <NavLink
             key={item.name}
-            href={item.href}
-            className="text-sm font-medium hover:text-primary hover:cursor-pointer"
+            to={item.href}
+            className={({ isActive }) =>
+              cn(
+                'text-sm font-medium hover:text-primary',
+                isActive && 'text-primary'
+              )
+            }
           >
             {item.name}
-          </a>
+          </NavLink>
         ))}
       </div>
       {/* Search - visible on mobile AND desktop */}
@@ -52,7 +61,7 @@ export default function Navbar() {
       </Avatar>
 
       {/* Mobile Burger */}
-      <Sheet>
+      <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger
           render={
             <Button variant="ghost" size="icon" className="md:hidden">
@@ -70,13 +79,16 @@ export default function Navbar() {
           <div className="mt-6 flex flex-col gap-5 items-center justify-start  mx-6">
             {/* Navigation */}
             {navItems.map((item) => (
-              <a
+              <NavLink
                 key={item.name}
-                href={item.href}
-                className="text-base font-medium"
+                to={item.href}
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  cn('text-base font-medium', isActive && 'text-primary')
+                }
               >
                 {item.name}
-              </a>
+              </NavLink>
             ))}
 
             {/* User */}
