@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
+import { MyListButton } from '@/features/myList';
 import { useTrendingAll } from '../hooks/useTrending';
 
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
@@ -43,55 +44,75 @@ export function Trending() {
             item.media_type === 'person' ? item.known_for?.[0] : item;
 
           return (
-            <article key={`${item.media_type}-${item.id}`} className="group">
+            <article
+              key={`${item.media_type}-${item.id}`}
+              className="group relative"
+            >
               {detailItem ? (
-                <Link
-                  to={`/details/${detailItem.media_type}/${detailItem.id}`}
-                  state={{
-                    from: `${location.pathname}${location.search}${location.hash}`,
-                  }}
-                  aria-label={`View details for ${name}`}
-                  className="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                >
-                  <div className="relative overflow-hidden rounded-lg">
-                    <img
-                      src={
-                        imagePath
-                          ? `${IMAGE_BASE_URL}${imagePath}`
-                          : '/placeholder.jpg'
-                      }
-                      alt={name}
-                      loading="lazy"
-                      className="aspect-2/3 w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-x-1 top-1 flex items-start justify-between gap-1">
-                      <div
-                        className={`text-[10px] font-semibold ${
-                          item.media_type === 'tv'
-                            ? 'text-green-600'
-                            : item.media_type === 'movie'
-                              ? 'text-red-600'
-                              : 'text-muted-foreground'
-                        }`}
-                      >
-                        {item.media_type === 'movie'
-                          ? 'Movie'
-                          : item.media_type === 'tv'
-                            ? 'TV'
-                            : 'Person'}
-                      </div>
-                      <div className="flex shrink-0 items-center gap-1 rounded-md bg-black/75 px-1.5 py-0.5 text-[10px] font-semibold text-white">
-                        <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                        {item.media_type === 'person'
-                          ? 'N/A'
-                          : item.vote_average.toFixed(1)}
+                <>
+                  <Link
+                    to={`/details/${detailItem.media_type}/${detailItem.id}`}
+                    state={{
+                      from: `${location.pathname}${location.search}${location.hash}`,
+                    }}
+                    aria-label={`View details for ${name}`}
+                    className="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  >
+                    <div className="relative overflow-hidden rounded-lg">
+                      <img
+                        src={
+                          imagePath
+                            ? `${IMAGE_BASE_URL}${imagePath}`
+                            : '/placeholder.jpg'
+                        }
+                        alt={name}
+                        loading="lazy"
+                        className="aspect-2/3 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-x-1 top-1 flex items-start justify-between gap-1">
+                        <div
+                          className={`text-[10px] font-semibold ${
+                            item.media_type === 'tv'
+                              ? 'text-green-600'
+                              : item.media_type === 'movie'
+                                ? 'text-red-600'
+                                : 'text-muted-foreground'
+                          }`}
+                        >
+                          {item.media_type === 'movie'
+                            ? 'Movie'
+                            : item.media_type === 'tv'
+                              ? 'TV'
+                              : 'Person'}
+                        </div>
+                        <div className="flex shrink-0 items-center gap-1 rounded-md bg-black/75 px-1.5 py-0.5 text-[10px] font-semibold text-white">
+                          <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                          {item.media_type === 'person'
+                            ? 'N/A'
+                            : item.vote_average.toFixed(1)}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <p className="mt-2 truncate text-center text-sm font-medium">
-                    {name}
-                  </p>
-                </Link>
+                    <p className="mt-2 truncate text-center text-sm font-medium">
+                      {name}
+                    </p>
+                  </Link>
+                  <MyListButton
+                    className="absolute left-2 top-2 z-10 border border-white/10 bg-white/10 text-white  hover:bg-signal-600 hover:text-white hover:cursor-pointer"
+                    item={{
+                      media_id: detailItem.id,
+                      media_type: detailItem.media_type,
+                      title:
+                        ('title' in detailItem
+                          ? detailItem.title
+                          : undefined) ??
+                        ('name' in detailItem ? detailItem.name : undefined) ??
+                        name,
+                      poster_path: detailItem.poster_path,
+                      vote_average: detailItem.vote_average ?? null,
+                    }}
+                  />
+                </>
               ) : (
                 <div className="overflow-hidden rounded-lg opacity-70">
                   <img
