@@ -159,7 +159,7 @@ export function MediaHero({
               )}
               <MyListButton
                 showLabel
-                className="gap-2 border border-white/25 bg-black/30 text-white hover:bg-white/15 hover:text-white"
+                className="gap-2 border border-white/25 bg-black/30 text-white hover:bg-white/15 hover:text-white hover:cursor-pointer"
                 item={{
                   media_id: data.id,
                   media_type: mediaType,
