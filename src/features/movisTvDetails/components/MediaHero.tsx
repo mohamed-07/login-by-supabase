@@ -1,7 +1,8 @@
-import { BookmarkPlus, Clock3, Info, Play, Star } from 'lucide-react';
+import { Clock3, Info, Play, Star } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { buttonVariants } from '@/components/ui/button';
 import { backdropSrcSet, backdropUrl } from '@/features/home/lib/tmdbImage';
+import { MyListButton } from '@/features/myList';
 import type {
   MediaDetails,
   MediaType,
@@ -74,9 +75,9 @@ export function MediaHero({
                   navigate('/trending', { replace: true });
                 }
               }}
-              className="mb-7 inline-flex items-center gap-2 text-sm text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
+              className="mb-7 inline-flex items-center gap-2 text-sm text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 hover:cursor-pointer"
             >
-              <span aria-hidden="true" className=''>‹</span> Back 
+              <span aria-hidden="true" className='cursor-pointer'>‹ </span> Back 
             </button>
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-red-400">
               {mediaType === 'tv' ? 'Series' : 'Feature film'}
@@ -156,15 +157,17 @@ export function MediaHero({
                   unavailable
                 </button>
               )}
-              <button
-                type="button"
-                disabled
-                title="A watchlist is not configured in this application yet"
-                className="inline-flex h-9 cursor-not-allowed items-center gap-2 rounded-lg border border-white/25 bg-black/30 px-3 text-sm font-medium text-white/50"
-              >
-                <BookmarkPlus className="size-4" aria-hidden="true" />
-                Add to My List
-              </button>
+              <MyListButton
+                showLabel
+                className="gap-2 border border-white/25 bg-black/30 text-white hover:bg-white/15 hover:text-white"
+                item={{
+                  media_id: data.id,
+                  media_type: mediaType,
+                  title,
+                  poster_path: data.poster_path,
+                  vote_average: data.vote_average ?? null,
+                }}
+              />
               <a
                 href="#information"
                 className={buttonVariants({
