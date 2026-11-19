@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Menu } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+// import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
@@ -12,6 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import SearchBar from '../search/componnets/SearchBar';
 
 import LogoutButton from '@/features/auth/components/LogoutButton';
 import { useAuthStore } from '../auth/store/authStore';// for getting the user data from the store
@@ -50,9 +51,14 @@ export default function Navbar() {
         ))}
       </div>
       {/* Search - visible on mobile AND desktop */}
+              {/* <div className="ml-auto min-w-0 w-full max-w-55 flex-1 sm:max-w-xs">
+                <Input type="search" placeholder="Search..." />
+              </div> */}
+      {/* **************** */}
       <div className="ml-auto min-w-0 w-full max-w-55 flex-1 sm:max-w-xs">
-        <Input type="search" placeholder="Search..." />
+        <SearchBar />
       </div>
+      {/* **************** */}
 
       {/* Desktop Avatar */}
       <Avatar className="hidden md:flex">
