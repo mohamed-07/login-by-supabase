@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Star } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 interface Props {
   to: string;
@@ -19,10 +19,15 @@ export function MediaCard({
   mediaType,
   action,
 }: Props) {
+  const location = useLocation();
+
   return (
     <article className="group relative min-w-0">
       <Link
         to={to}
+        state={{
+          from: `${location.pathname}${location.search}${location.hash}`,
+        }}
         aria-label={`View details for ${title}`}
         className="block rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >

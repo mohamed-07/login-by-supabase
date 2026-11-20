@@ -69,8 +69,12 @@ export function MediaHero({
             <button
               type="button"
               onClick={() => {
-                if (typeof from === 'string' && from.startsWith('/')) {
-                  navigate(-1);
+                if (
+                  typeof from === 'string' &&
+                  from.startsWith('/') &&
+                  !from.startsWith('//')
+                ) {
+                  navigate(from, { replace: true });
                 } else {
                   navigate('/trending', { replace: true });
                 }
