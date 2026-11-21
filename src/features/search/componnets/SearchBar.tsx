@@ -2,19 +2,19 @@ import { useEffect, useRef, useState } from 'react';
 import { useDebounce } from '../hooks/useDebounce';
 import { useSearchMulti } from '../hooks/useSearchMulti';
 import { Link, useLocation } from 'react-router-dom';
+import { Search, X } from 'lucide-react'
 
 export default function SearchBar() {
   const location = useLocation();
   const [text, setText] = useState('');
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null); //
-  const debouncedText = useDebounce(text, 1000); // wait 1000ms after typing stops
-  const hasQuery = debouncedText.trim().length >= 3; // only search if query is at least 3 characters
+  const inputRef = useRef<HTMLInputElement>(null) //
+  const debouncedText = useDebounce(text, 1000); // Wait 1000ms after typing stops
+  const hasQuery = debouncedText.trim().length >= 3; // Only search if query is at least 3 characters
 
-  const { data, isLoading, isError } = useSearchMulti(
-    1,
-    debouncedText
-  );
+  const { data, isLoading, isError } = useSearchMulti(1, debouncedText);
+
   console.log('Search results:', data);
   const results = data?.results.filter(
     (item) => item.media_type === 'movie' || item.media_type === 'tv'
@@ -43,17 +43,45 @@ export default function SearchBar() {
   const showDropdown = open && text.trim().length >= 3 && hasQuery;
 
   return (
-    <div ref={wrapperRef} className="relative">
+    <div ref={wrapperRef} className="group relative w-full">
+      {/* Search bar icon */}
+      <Search
+        aria-hidden="true"
+        className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400 transition-colors group-focus-within:text-neutral-700"
+      />
       <input
+        ref={inputRef}
         value={text}
+        autoComplete='true'
+        aria-label="Search movies and TV shows"
+        placeholder="Search movies & TV shows..."
         onChange={(e) => {
           setText(e.target.value);
           setOpen(true);
         }}
         onFocus={() => setOpen(true)}
-        placeholder="Search movies & TV shows..."
-        className="w-full rounded-md bg-neutral-900 px-4 py-2 text-white"
+        className="h-11 w-full rounded-xl bg-neutral-100 pl-10 pr-10 text-sm text-neutral-900
+                  placeholder:text-neutral-500 shadow-sm ring-1 ring-inset ring-neutral-200
+                  transition-all duration-200 hover:bg-white
+                  focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/60
+                  [&::-webkit-search-cancel-button]:appearance-none"
       />
+      {/* Button Remove */}
+      {text && (
+        <button
+          type="button"
+          aria-label="Clear search"
+          onClick={() => {
+            setText('');
+            setOpen(false);
+            inputRef.current?.focus();
+          }}
+          className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-full p-1 hover:cursor-pointer
+                    text-neutral-400 transition-colors hover:bg-neutral-200 hover:text-neutral-700"
+        >
+          <X className="h-4 w-4" />
+        </button>
+      )}
       {showDropdown && (
         <div className="absolute left-0 right-0 top-full z-50 mt-2 max-h-80 overflow-y-auto rounded-lg border bg-popover p-1 text-popover-foreground shadow-lg">
           {/* (2) الرسائل صارت داخل القائمة */}
@@ -74,12 +102,15 @@ export default function SearchBar() {
           {results && results.length > 0 && (
             <ul className="">
               {results.map((item) => {
-                const title = item.media_type === 'movie' ? item.title : item.name;
-                const date = item.media_type === 'movie'
+                const title =
+                  item.media_type === 'movie' ? item.title : item.name;
+                const date =
+                  item.media_type === 'movie'
                     ? item.release_date
                     : item.first_air_date;
                 const type = item.media_type === 'movie' ? 'Movie' : 'TV show';
-                const path = item.media_type === 'movie'
+                const path =
+                  item.media_type === 'movie'
                     ? `/details/movie/${item.id}`
                     : `/details/tv/${item.id}`;
                 return (
@@ -99,7 +130,10 @@ export default function SearchBar() {
                           className="h-14 w-10 shrink-0 rounded object-cover"
                         />
                       ) : (
-                        <div aria-hidden="true" className="h-14 w-10 shrink-0 rounded bg-muted"/>
+                        <div
+                          aria-hidden="true"
+                          className="h-14 w-10 shrink-0 rounded bg-muted"
+                        />
                       )}
 
                       <div className="min-w-0 flex-1">
